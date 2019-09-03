@@ -10,6 +10,14 @@ variable "password" {
   description = "Database password"
 }
 
+variable "min_capacity" {
+  default = "2"
+}
+
+variable "max_capacity" {
+  default = "8"
+}
+
 # Automatically injected from Colony
 variable "sandbox_id" {
   description = "Colony sandbox id"
