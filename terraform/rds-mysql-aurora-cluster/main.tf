@@ -21,7 +21,7 @@ provider "aws" {
 //}
 
 resource "aws_rds_cluster" "cluster" {
-  cluster_identifier     = "${var.sandbox_id}-cluster"
+  cluster_identifier     = "cs-${var.sandbox_id}-cl"
   database_name          = "${var.db_name}"
   master_username        = "${var.username}"
   master_password        = "${var.password}"
