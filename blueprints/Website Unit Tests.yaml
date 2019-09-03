@@ -1,0 +1,61 @@
+# A Java Spring website deployed on a TomCat server and a
+# MySQL database deployed on two EC2 instances
+#
+#       [Front End] (Java, Tomcat)
+#            |
+#       [Back End]  (MySQL)
+#
+# Application source code:
+# https://github.com/cloudshell-colony/sample_java_spring_source
+#
+---
+spec_version: 1
+kind: blueprint
+
+metadata:
+  description: >
+    A Java Spring website deployed on a Tomcat
+    server and MySQL database
+
+clouds:
+  - AWS: eu-west-1
+
+artifacts:
+  - java-spring-website: latest/colony-java-spring-sample-1.0.0-BUILD-SNAPSHOT.war
+# These are the blueprint parameters and their default values.
+# The values can be changed when creating a sandbox based on this
+# blueprint.
+inputs:
+  - DB_USER: root  # Used to define the db admin account
+  - DB_PASS:
+      display_style: masked
+      description: please set the root database password
+      default_value: Colony!123
+  # Used to define the db admin password
+  - DB_NAME: demo_db  # DB_NAME - a target database name
+
+# These are the applications that will be deployed in this blueprint
+applications:
+  # One instance of java-spring-website
+  # (see: applications/java-spring-website/java-spring-website.yaml)
+  - java-spring-website:
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $outputs.rds-mysql-aurora-cluster.hostname #DNS name output from the RDS service
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - rds-mysql-aurora-cluster
+services:
+  - rds-mysql-instance:  # One instance of mysql (see: services/rds-mysql-aurora-cluster/rds-mysql-aurora-cluster.yaml)
+      input_values:
+        - DB_NAME: $DB_NAME
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - SANDBOX_ID: $COLONY.SandboxId
+        - VPC_ID: $COLONY.VirtualNetworkId #Sandbox VPC Id
+debugging:
+  availability: on
