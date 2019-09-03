@@ -15,7 +15,7 @@ kind: blueprint
 metadata:
   description: >
     A Java Spring website deployed on a Tomcat
-    server and MySQL database
+    server and MySQL Aurora serverless cluster
 
 clouds:
   - AWS: eu-west-1
