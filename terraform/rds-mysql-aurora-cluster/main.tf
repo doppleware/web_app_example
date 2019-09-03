@@ -6,7 +6,7 @@ module "db" {
   source  = "terraform-aws-modules/rds-aurora/aws"
   version = "~> 2.0"
 
-  name                            = "aurora_${var.sandbox_id}"
+  name                            = "aurora-${var.sandbox_id}"
 
   engine                          = "aurora-postgresql"
   engine_version                  = "9.6.9"
