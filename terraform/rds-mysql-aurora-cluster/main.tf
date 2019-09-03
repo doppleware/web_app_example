@@ -33,8 +33,8 @@ resource "aws_rds_cluster" "cluster" {
 
   scaling_configuration {
     auto_pause   = "true"
-    max_capacity =  "${var.min_capacity}"
-    min_capacity = "${var.max_capacity}"
+    max_capacity =  "${var.max_capacity}"
+    min_capacity = "${var.min_capacity}"
   }
 
   lifecycle {
