@@ -2,27 +2,6 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-data "aws_vpc" "default" {
-  id = "${var.vpc_id}"
-}
-
-data "aws_subnet_ids" "apps_subnets" {
-  vpc_id = "${var.vpc_id}"
-  tags = {
-    Name = "app-subnet*"
-  }
-}
-
-resource "aws_db_subnet_group" "rds" {
-  name = "rds-${var.sandbox_id}-subnet-group"
-  subnet_ids = ["${data.aws_subnet_ids.apps_subnets.ids}"]
-
-  tags = {
-    Name = "RDS-subnet-group"
-  }
-}
-
-
 resource "aws_db_instance" "default" {
   allocated_storage    = 20
   storage_type         = "gp2"

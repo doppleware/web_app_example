@@ -17,3 +17,12 @@ resource "aws_security_group" "rds" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_db_subnet_group" "rds" {
+  name = "rds-${var.sandbox_id}-subnet-group"
+  subnet_ids = ["${data.aws_subnet_ids.apps_subnets.ids}"]
+
+  tags = {
+    Name = "RDS-subnet-group"
+  }
+}
