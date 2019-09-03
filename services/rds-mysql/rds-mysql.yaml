@@ -11,7 +11,8 @@ inputs:
   # It is recommended that you create a specific role with relevant permissions and provide its ARN here.
 
 module:
-  source: github.com/doppleware/web_app_example/terraform/rds-mysql
+  source: github.com/doppleware/web_app_example/terraform/rds-mysql-aurora-cluster
+  # source: github.com/doppleware/web_app_example/terraform/rds-mysql
   # The source element is the location of your Terraform module,
   # Both public and private repos are supported
 
