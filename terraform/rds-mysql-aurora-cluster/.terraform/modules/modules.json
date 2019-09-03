@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"db","Source":"terraform-aws-modules/rds-aurora/aws","Version":"2.3.0","Dir":".terraform\\modules\\db\\terraform-aws-modules-terraform-aws-rds-aurora-af78b2a"}]}
