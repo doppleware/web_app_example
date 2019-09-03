@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "eu-west-1"
+}
+
 resource "aws_rds_cluster_instance" "cluster_instances" {
   identifier         = "${var.sandbox_id}-instance"
   cluster_identifier = "${aws_rds_cluster.cluster.id}"
