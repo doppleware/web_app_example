@@ -25,7 +25,6 @@ resource "aws_rds_cluster" "cluster" {
   database_name          = "${var.db_name}"
   master_username        = "${var.username}"
   master_password        = "${var.password}"
-  engine_version         = "5.7.12"
   engine_mode            = "serverless"
   engine                 = "aurora"
   vpc_security_group_ids = ["${aws_security_group.rds.id}"]
