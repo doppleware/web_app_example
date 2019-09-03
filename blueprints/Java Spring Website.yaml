@@ -20,6 +20,8 @@ metadata:
 clouds:
   - AWS: eu-west-1
 
+artifacts:
+  - java-spring-website: latest/colony-java-spring-sample-1.0.0-BUILD-SNAPSHOT.war
 # These are the blueprint parameters and their default values.
 # The values can be changed when creating a sandbox based on this
 # blueprint.
