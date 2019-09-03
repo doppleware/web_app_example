@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "eu-west-1"
+}
+
 module "db" {
   source  = "terraform-aws-modules/rds-aurora/aws"
   version = "~> 2.0"
