@@ -59,7 +59,8 @@ echo "****************************************************************"
 rm -rf /var/lib/tomcat8/webapps/ROOT
 
 # deploy the application as the ROOT web application
-cp sample_java_spring_source/artifacts/colony-java-spring-sample-1.0.0-BUILD-SNAPSHOT.war /var/lib/tomcat8/webapps/ROOT.war
+cp $ARTIFACTS_PATH/colony-java-spring-sample*.war /var/lib/tomcat8/webapps/ROOT.war
+#cp sample_java_spring_source/artifacts/colony-java-spring-sample-1.0.0-BUILD-SNAPSHOT.war /var/lib/tomcat8/webapps/ROOT.war
 
 
 systemctl start tomcat8
