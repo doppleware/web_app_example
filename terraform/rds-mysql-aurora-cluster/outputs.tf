@@ -1,4 +1,4 @@
 output "hostname" {
   description = "The cluster endpoint"
-  value       = module.aurora.this_rds_cluster_endpoint
+  value       =   "${aws_rds_cluster.cluster.endpoint}"
 }
