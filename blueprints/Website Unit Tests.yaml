@@ -44,7 +44,7 @@ applications:
         - DB_USER: $DB_USER
         - DB_PASS: $DB_PASS
         - DB_NAME: $DB_NAME
-        - DB_HOSTNAME: $outputs.rds-mysql-aurora-cluster.hostname #DNS name output from the RDS service
+        - DB_HOSTNAME: $outputs.rds-mysql-instance.hostname #DNS name output from the RDS service
       # The website depends on MySQL and will start deploying only when
       # the database is ready
       depends_on:
