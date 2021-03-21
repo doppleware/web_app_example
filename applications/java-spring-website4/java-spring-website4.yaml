@@ -1,0 +1,73 @@
+#
+#   This application file defines how to deploy and configure
+#   a sample website.
+#   Developed with Java Spring, deployed on a TomCat web server
+#
+---
+spec_version: 1
+kind: application
+
+# These inputs are used by the initialization script,
+# to configure the connectivity to the database
+# In our use case, the value will be provided from the Blueprint
+# using this application
+inputs:
+  - DB_USER
+  - DB_PASS
+  - DB_NAME
+  - DB_HOSTNAME: none
+
+# This section defines the infrastructure requirements
+# for the application
+infrastructure:
+  # Specify the compute requirement for this app
+  # if we don't specify anything the default will be used
+  compute:
+    spec:
+      aws:
+        instance_type: t2.medium
+      azure:
+        vm_size: Basic_A2
+
+  connectivity:
+    external:
+      - port_info:
+          # Port 8080 will be opened externally to receive web requests
+          port: 8080
+
+source:
+  os_type: linux
+  # Images for AWS are provided per region
+  image:
+    # This is a clean Ubuntu server image that will be used
+    # to create a new EC2 instance in the defined AWS region
+    ami:
+      - id: ami-f90a4880
+        region: eu-west-1
+        username: ubuntu
+    azure_image:
+      - urn: Canonical:UbuntuServer:16.04-LTS:latest
+        username: adminuser
+    docker_image:
+      - tag: 16.04
+        name: ubuntu
+
+configuration:
+  # The initialization script is intended to install
+  # app prerequisite and initialize the OS
+  initialization:
+    script: java-spring-website.sh
+  # The command is the actual command used to start
+  # the application process
+  start:
+    command: >
+      systemctl restart tomcat8
+  # We validate the app is listening on
+  # the ports defined in the connectivity section
+  # to validate it is up
+  healthcheck:
+    wait_for_ports: ALL
+    timeout: 600
+
+debugging:
+  connection_protocol: SSH
