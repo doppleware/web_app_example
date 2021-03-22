@@ -12,6 +12,7 @@
 spec_version: 1
 kind: blueprint
 
+
 metadata:
   description: >
     A Java Spring website deployed on a Tomcat
@@ -49,6 +50,79 @@ applications:
       # the database is ready
       depends_on:
         - rds-mysql-instance
+
+  - java-spring-website2:
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $outputs.rds-mysql-instance.hostname #DNS name output from the RDS service
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - rds-mysql-instance
+
+  - java-spring-website3:
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $outputs.rds-mysql-instance.hostname #DNS name output from the RDS service
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - rds-mysql-instance
+
+  - java-spring-website4:
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $outputs.rds-mysql-instance.hostname #DNS name output from the RDS service
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - rds-mysql-instance
+
+  - java-spring-website5:
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $outputs.rds-mysql-instance.hostname #DNS name output from the RDS service
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - rds-mysql-instance
+
+  - java-spring-website6:
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $outputs.rds-mysql-instance.hostname #DNS name output from the RDS service
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - rds-mysql-instance
+
+  - java-spring-website7:
+      instances: 1
+      input_values:
+        - DB_USER: $DB_USER
+        - DB_PASS: $DB_PASS
+        - DB_NAME: $DB_NAME
+        - DB_HOSTNAME: $outputs.rds-mysql-instance.hostname #DNS name output from the RDS service
+      # The website depends on MySQL and will start deploying only when
+      # the database is ready
+      depends_on:
+        - rds-mysql-instance
+
 services:
   - rds-mysql-instance:  # One instance of mysql (see: services/rds-mysql-aurora-cluster/rds-mysql-aurora-cluster.yaml)
       input_values:
@@ -59,3 +133,6 @@ services:
         - VPC_ID: $COLONY.VirtualNetworkId #Sandbox VPC Id
 debugging:
   availability: on
+
+ingress:
+  enabled: false
