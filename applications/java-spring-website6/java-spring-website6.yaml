@@ -71,4 +71,3 @@ configuration:
 
 debugging:
   connection_protocol: SSH
-  
