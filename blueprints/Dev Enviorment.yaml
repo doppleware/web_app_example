@@ -23,7 +23,7 @@ inputs:
 
 # These are the applications that will be deployed in this blueprint
 applications:
-  - mysql:  # One instance of mysql (see: applications/mysql/mysql.yaml)
+  - mysql8:  # One instance of mysql (see: applications/mysql/mysql.yaml)
       input_values:
         - DB_USER: $DB_USER  # Assign values from the app inputs
         - DB_PASS: $DB_PASS
