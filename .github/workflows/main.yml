@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+    pull_request:
+      branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Get changed files
+      id: files
+      uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'csv'
+    - name: Colony validate blueprints
+      uses: QualiSystemsLab/colony-validate-bp-action@v0.0.1
+      with:
+        space: PreSaleJenkinsSolution
+        files_list: ${{ steps.files.outputs.added_modified  }}
+        colony_token: ${{ secrets.COLONY_TOKEN }}
