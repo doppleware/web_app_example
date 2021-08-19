@@ -57,7 +57,7 @@ services:
         - DB_PASS: $DB_PASS
         - CLUSTER_MIN_CAPACITY: 2
         - CLUSTER_MAX_CAPACITY: 4
-        - SANDBOX_ID: $COLONY.environment.id
-        - VPC_ID: $COLONY.environment.virtual_network_id #Sandbox VPC Id
+        - SANDBOX_ID: $colony.environment.id
+        - VPC_ID: $colony.environment.virtual_network_id #Sandbox VPC Id
 debugging:
   availability: on
